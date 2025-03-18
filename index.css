@@ -63,3 +63,22 @@
     color: red;
     padding: 5px;
 }
+.hide {
+    display: none !important;
+}
+#quizArea {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+}
+
+.questionArea {
+    width: 75%;
+    height: 100vh;
+    background-image: url(image.png);
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
