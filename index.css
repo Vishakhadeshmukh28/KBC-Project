@@ -82,3 +82,52 @@
     flex-direction: column;
     justify-content: end;
 }
+#levelArea {
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #100241;
+    color: white;
+}
+.level {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    border-radius: 7px;
+}
+.levelNumber {
+    font-size: 20px;
+    font-weight: 300;
+    width: 30%;
+}
+
+.levelAmount {
+    font-size: 20px;
+    font-weight: 300;
+}
+#levelList {
+    padding: 20px;
+    list-style: none;
+}
+.level.active {
+    background-color: teal;
+}
+#questionStatement {
+    width: 80%;
+    background: linear-gradient(#100241, black);
+    border: 2px solid white;
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+}
+
+.question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
