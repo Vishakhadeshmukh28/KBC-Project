@@ -1,5 +1,7 @@
 const welcomeScreen = document.getElementById("welcomeScreen");
 const quizArea = document.getElementById("quizArea");
+const resultScreen = document.getElementById("resultScreen");
+const timerText = document.getElementById("timer");
 
 
 const levels = [
@@ -101,8 +103,12 @@ const questions = [
         answer: 1
       }
 ];
-const currentLevelIndex = 0;
-const currentQuestionIndex =0;
+let currentLevelIndex = levels.length - 1;
+let currentQuestionIndex = 0;
+let winningAmount = "₹ 0";
+let timeInterval = 30;
+let interval;
+
 function startGame() {
     const username = document.getElementById("username").value;
     const error = document.getElementById("usernameError");
@@ -114,11 +120,11 @@ function startGame() {
     error.innerHTML="";
     welcomeScreen.classList.add("hide"); 
     quizArea.classList.remove("hide");
-    loadlevels();
+    loadLevels();
     loadQuestion();
 
 }   
-function loadlevels(){
+function loadLevels(){
     const levelList = document.getElementById("levelList");
     levelList.innerHTML = "";
     levels.forEach((level, index)=>{
@@ -162,4 +168,38 @@ function timer() {
     }
     timerText.innerHTML = timeInterval;
     timeInterval--;
+}   
+
+
+
+
+function checkAnswer(option) {
+  const currentQuestion = questions[currentQuestionIndex];
+
+  if(option !== currentQuestion.answer){
+      manageResut()
+  }
+  currentQuestionIndex++;
+  winningAmount = levels[currentLevelIndex];
+  currentLevelIndex--;
+  clearInterval(interval);
+  if(currentLevelIndex < 0){
+      manageResut(true)
+  }
+  loadLevels();
+  loadQuestion();
+}
+function manageResut(userWon = false) {
+  const priceMoney = document.getElementById("priceMoney");
+  const message = document.getElementById("message");
+  if(userWon){
+      priceMoney.innerHTML = `You won: ${levels[0]}`;
+      message.innerHTML = "Congratulations!"
+      quizArea.classList.add("hide");
+      resultScreen.classList.remove("hide");
+      return;
+  }
+  priceMoney.innerHTML = `You won: ${winningAmount}`;
+  quizArea.classList.add("hide");
+  resultScreen.classList.remove("hide");
 }
